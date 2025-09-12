@@ -1,0 +1,81 @@
+/* ---- Main Navbar Styling ---- */
+.app-navbar {
+  background-color: #1c2b36 !important; /* Dark charcoal background to match the theme */
+  border-bottom: 1px solid #283747; /* Subtle separator */
+  padding: 0.75rem 0;
+  transition: background-color 0.3s ease;
+}
+
+/* ---- Brand Logo Styling ---- */
+.navbar-brand-logo {
+  color: #61dafb !important; /* Main accent color */
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px;
+}
+
+/* ---- Navigation Link Styling ---- */
+.nav-link-custom {
+  color: #f8f9fa !important;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s ease-in-out;
+  position: relative; /* Crucial for positioning the badge */
+  padding: 0.5rem 1rem !important;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active { /* Style for active page link */
+  color: #61dafb !important;
+}
+
+/* ---- Favorite Count Badge ---- */
+.fav-badge {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #e74c3c !important; /* A bright red for attention */
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #1c2b36; /* Creates a "cutout" effect */
+}
+
+/* ---- Search Form Styling ---- */
+.search-form .form-control {
+  background-color: #283747 !important;
+  border: 1px solid #34495e !important;
+  color: #f8f9fa !important;
+  border-right: none !important;
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.search-form .form-control::placeholder {
+  color: #adb5bd;
+}
+
+/* --- Style for when the search input is focused --- */
+.search-form .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(97, 218, 251, 0.25) !important;
+  border-color: #61dafb !important;
+}
+
+.search-form .btn {
+  border-color: #34495e !important;
+  border-radius: 0 0.375rem 0.375rem 0;
+}
+
+/* ---- Navbar Toggler (Mobile Hamburger Icon) ---- */
+.navbar-toggler {
+  border-color: rgba(97, 218, 251, 0.5) !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2897, 218, 251, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
