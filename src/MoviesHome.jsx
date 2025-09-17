@@ -165,6 +165,7 @@ const MoviesHome = () => {
     error,
     searchTerm,
   } = useSelector((state) => state.movies);
+  const lang = useSelector((state) => state.i18n.lang);
 
   const favItems = useSelector((state) => state.fav.items);
 
@@ -256,8 +257,11 @@ const MoviesHome = () => {
             >
               ⬅ Previous
             </button>
-            <span className="page-info">Page {page} of {totalPages}</span>
-            <button
+ <span className="page-info">
+              {lang === 'ar'
+                ? `الصفحة ${page} من ${totalPages}`
+                : `Page ${page} of ${totalPages}`}
+            </span>            <button
               onClick={() => dispatch(setPage(Math.min(page + 1, totalPages)))}
               disabled={page === totalPages}
               className="btn"
