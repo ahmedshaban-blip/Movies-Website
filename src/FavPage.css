@@ -76,7 +76,7 @@
 
 .fav-page .card-img-top{
   width:100%;
-  aspect-ratio: 2 / 3;            /* ثبات الارتفاع */
+  aspect-ratio: 2 / 3;            /* */
   object-fit:cover;
   display:block;
 }
@@ -94,7 +94,7 @@
 .fav-page .card-title{
   font-size:1rem; line-height:1.35;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
-  overflow:hidden; min-height:2.7em; /* يحافظ على توازن الارتفاع */
+  overflow:hidden; min-height:2.7em; 
 }
 
 /* ==== Buttons inside cards ==== */

@@ -23,8 +23,8 @@ const MovieDetails = () => {
     setLoading(true);
     setError(null);
 
-    const fetchMovie = async () => {
-      // Add a small delay to see the skeleton loader
+    const controller = new AbortController();
+    const fetchMovie = async () => {      
       await new Promise(resolve => setTimeout(resolve, 500));
       try {
          const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
@@ -32,19 +32,21 @@ const MovieDetails = () => {
            api_key: '29cf44b93ca83bf48d9356395476f7ad',
             append_to_response: 'credits',
             language: lang,
-          }
+          },
+          signal: controller.signal,
         });
         setMovie(res.data);
       } catch (err) {
-        console.error("Failed to fetch movie details:", err);
-        setError("Could not load movie details. Please try again later.");
+        if (err.name === 'CanceledError') return; 
+        console.error("Failed to fetch movie details:", err);        setError("Could not load movie details. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchMovie();
-  }, [id]);
+     return () => controller.abort();
+  }, [id, lang]); 
 
   // A component for the detailed skeleton loader
   const SkeletonLoader = () => (
