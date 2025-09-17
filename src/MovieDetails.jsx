@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import './MovieDetails.css'; // Import the CSS file for styling
-// Styles are now included directly in the component to avoid pathing errors.
+import './MovieDetails.css';
+import { useSelector } from 'react-redux';
+
 const MovieDetailsStyles = () => (
   <style>{`
     
@@ -12,6 +13,8 @@ const MovieDetailsStyles = () => (
 
 const MovieDetails = () => {
   const { id } = useParams();
+  const lang = useSelector((s) => s.i18n?.lang === 'ar' ? 'ar-SA' : 'en-US');
+
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,9 +27,13 @@ const MovieDetails = () => {
       // Add a small delay to see the skeleton loader
       await new Promise(resolve => setTimeout(resolve, 500));
       try {
-        const res = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=29cf44b93ca83bf48d9356395476f7ad&append_to_response=credits`
-        );
+         const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+          params: {
+           api_key: '29cf44b93ca83bf48d9356395476f7ad',
+            append_to_response: 'credits',
+            language: lang,
+          }
+        });
         setMovie(res.data);
       } catch (err) {
         console.error("Failed to fetch movie details:", err);

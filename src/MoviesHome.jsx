@@ -142,17 +142,19 @@
 
 
 // src/MoviesHome.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect,useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFav, removeFav } from './redux/Actions/Action';
 import { Link } from 'react-router-dom';
 import './MoviesHome.css';
 import {Pagination} from "./pagination"
+
 import {
   fetchMovies,
   setSearchTerm,
   setPage,
 } from './action';
+import { fetchUpcomingMovies } from './action';
 
 const MoviesHome = () => {
   const dispatch = useDispatch();
@@ -165,17 +167,24 @@ const MoviesHome = () => {
     error,
     searchTerm,
   } = useSelector((state) => state.movies);
-  const lang = useSelector((state) => state.i18n.lang);
+  const lang = useSelector((state) => state.i18n?.lang || 'en');
 
   const favItems = useSelector((state) => state.fav.items);
+  const [category, setCategory] = useState('now');
 
   // استدعاء الثنك مع debounce
   useEffect(() => {
     const id = setTimeout(() => {
-      dispatch(fetchMovies(page, searchTerm));
-    }, 300);
+if (searchTerm && searchTerm.trim()) {
+        dispatch(fetchMovies(page, searchTerm));
+      } else if (category === 'upcoming') {
+        dispatch(fetchUpcomingMovies(page));
+      } else {
+        dispatch(fetchMovies(page, ''));
+      }    }, 300);
     return () => clearTimeout(id);
-  }, [dispatch, page, searchTerm]);
+  }, [dispatch, page, searchTerm, category]);
+
 
   const SkeletonCard = () => (
     <div className="col">
@@ -190,9 +199,30 @@ const MoviesHome = () => {
   return (
     <div className="movies-home">
       <div className="container">
-        <h1 className="page-title">
-          {searchTerm ? `Results for "${searchTerm}"` : 'Now Playing Movies'}
-        </h1>
+
+              <div className="d-flex align-items-center justify-content-between mb-3">
+          <h1 className="page-title m-0">
+            {searchTerm
+              ? (lang === 'ar' ? `نتائج "${searchTerm}"` : `Results for "${searchTerm}"`)
+              : (category === 'upcoming'
+                    ? (lang === 'ar' ? 'أفلام قادمة' : 'Upcoming Movies')
+                    : (lang === 'ar' ? 'أفلام تُعرض الآن' : 'Now Playing Movies'))}
+         </h1>
+         <div className="btn-group">
+            <button
+              className={`btn ${category==='now' ? 'btn-info' : 'btn-outline-info'}`}
+              onClick={()=> setCategory('now')}
+            >
+              {lang==='ar' ? 'الآن' : 'Now'}
+            </button>
+            <button
+              className={`btn ${category==='upcoming' ? 'btn-info' : 'btn-outline-info'}`}
+              onClick={()=> setCategory('upcoming')}
+            >
+              {lang==='ar' ? 'القادم' : 'Upcoming'}
+            </button>
+          </div>
+        </div>
 
         <div className="search-container">
           <input
