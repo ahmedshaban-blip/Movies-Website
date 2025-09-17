@@ -1,18 +1,22 @@
 # FilmFlix Movie Browser
-
 [![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/ahmedshaban-blip/Movies-Website)
 
 A responsive movie browsing website built with React and Redux. This application allows users to discover movies from The Movie Database (TMDb) API, search for specific titles, view detailed information, and manage a personal list of favorite movies.
 
+## Live Demo
+
+[FilmFlix Movie Browser Demo](https://movies-website-neon-tau.vercel.app/)
+
 ## Features
 
--   **Discover Movies:** Browse a list of currently playing movies fetched from the TMDb API.
--   **Movie Search:** Dynamically search for movies by title with debounced API requests.
+-   **Discover Movies:** Browse lists of "Now Playing" and "Upcoming" movies fetched from the TMDb API.
+-   **Movie Search:** Dynamically search for movies by title with debounced API requests for a smooth user experience.
 -   **Detailed View:** Click on a movie to see its details, including poster, synopsis, rating, release date, and genres.
 -   **Favorites Management:** Add movies to a "Favorites" list or remove them. The list persists across the session using Redux state.
 -   **Pagination:** Navigate through multiple pages of movie results.
--   **Responsive Design:** A clean, dark-themed UI that works on various screen sizes.
--   **User Forms:** Includes templates for Login and Sign Up pages.
+-   **Multilingual Support:** Toggle between English and Arabic language interfaces.
+-   **Responsive Design:** A clean, dark-themed UI that is fully responsive and works on various screen sizes, built with Bootstrap and CoreUI.
+-   **User Forms:** Includes functional templates for Login and Sign Up pages with client-side validation.
 -   **Loading & Error States:** Skeleton loaders provide a better user experience while data is being fetched, and clear error messages are displayed on failure.
 
 ## Tech Stack
@@ -45,7 +49,7 @@ You need to have Node.js and npm installed on your machine.
     ```
     
 3.  **API Key Configuration:**
-    This project uses an API key from TMDb. The key is currently hardcoded in the source files (`src/action.js`, `src/MovieDetails.jsx`). For a production environment, it is recommended to store this in an environment variable.
+    This project uses an API key from TMDb. The key is currently hardcoded in the source files (`src/action.js`, `src/MovieDetails.jsx`). For a production environment, it is highly recommended to store this in an environment variable.
 
 4.  **Run the application:**
     ```sh
