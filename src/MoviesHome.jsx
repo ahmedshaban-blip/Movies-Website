@@ -287,9 +287,9 @@ if (searchTerm && searchTerm.trim()) {
             >
               ⬅ Previous
             </button>
- <span className="page-info">
+ <span className="page-info  text-white ">
               {lang === 'ar'
-                ? `الصفحة ${page} من ${totalPages}`
+                ? `الصفحة ${page} من ${totalPages} `
                 : `Page ${page} of ${totalPages}`}
             </span>            <button
               onClick={() => dispatch(setPage(Math.min(page + 1, totalPages)))}
